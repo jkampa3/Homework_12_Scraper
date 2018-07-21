@@ -57,8 +57,35 @@ router.get('/scrape', function (req, res) {
         }
     });
 
+    //ADD LOGIC TO VALIDATE ARTICLE TITLE!
+
 });
 
+//json call for all articles
+router.get('/api-all-articles', function(req, res) {
+    Articles.find({}, function(err, doc) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(doc);
+        }
+    });
+});
+
+//json clear database entries
+router.get('/clearAll', function(req, res) {
+    Articles.remove({}, function(err, doc) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('URGENT: ALL ARTICLES HAVE BEEN REMOVED');
+        }
+
+    });
+    res.redirect('/api-all-articles');
+});
+
+//post comments
 router.post('/add/comments/:id', function (req, res) {
     var articleId = req.params.id;
     var commentPoster = req.body.name;
