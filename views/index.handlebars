@@ -18,25 +18,26 @@
 </header>
 
 <div class="container">
-    <div id="articlesSection" class="col-md-9">
+    <div id="articlesSection" class="col-md-12">
 	<span id="articlesTitle"> CURRENT STORIES </span>
 	<div id="articlesDiv">
 
 		{{#if articles}}
 
 			{{#each articles}}
-				<div class="col s12" data_id="{{this.id}}">
+				<div class="col-md-12" data_id="{{this.id}}">
 				    <div class="card horizontal">
 				        <div class="card-image">
 				        	<img src="{{this.img}}">
 				     	</div>
 					    <div class="card-stacked">
 							<div class="card-content">
-								<p class="article-title">{{{this.headline}}}</p>
+								<p class="headline">{{{this.headline}}}</p>
 								<p class="source">{{{this.source}}} -- </p>
-								<span class="teaser">{{this.summary}}</span>
+								<span class="summary">{{this.summary}}</span>
 							</div>
-							<div id="test" class="card-action">
+							<div id="urlLink" class="card-action">
+								{{!--<button type="button" href="{{this.link}}" target="_blank" class="btn btn-primary">Read</button>--}}
 					    	    <a class="" href="{{this.link}}" target="_blank">Read</a>
 					    	</div>
 						</div>
