@@ -5,8 +5,8 @@ var cheerio = require('cheerio');
 //var path = require('path');
 //var axios = require("axios");
 
-var Articles = require('../models/article.js');
-var Comments = require('../models/comment.js');
+var Articles = require('../models/articles.js');
+var Comments = require('../models/comments.js');
 
 //allow page to scrape upon load
 router.get('/', function (req, res) {
@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/articles', function (req, res) {
-    Article.find().sort({ _id: -1 })
+    Articles.find().sort({ _id: -1 })
         .populate('comments')
         .exec(function (err, doc) {
             if (err) {
@@ -86,9 +86,6 @@ router.post('/add/comments/:id', function (req, res) {
     });
 
 });
-
-
-
 
 //delete comments
 router.post('/remove/comment/:id', function (req, res) {
