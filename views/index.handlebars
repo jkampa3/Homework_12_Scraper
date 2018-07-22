@@ -1,67 +1,96 @@
 <header>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Scrape the NPR</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Scrape</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">Scrape the NPR</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+		 aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/">Scrape</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
 </header>
 
 <div class="container">
-    <div id="articlesSection" class="col-md-12">
-	<span id="articlesTitle"> CURRENT NPR TECHNOLOGY STORIES </span>
-	<div id="articlesDiv">
+	<div id="articlesSection" class="col-md-8 offset-md-2">
+		<span id="articlesTitle"> CURRENT NPR TECHNOLOGY STORIES </span>
+		<div id="articlesDiv">
 
-		{{#if articles}}
-
-			{{#each articles}}
-				<div class="col-md-12" data_id="{{this.id}}">
-				    <div class="card horizontal">
-				        <div class="card-image">
-				        	<img src="{{this.img}}">
-				     	</div>
-					    <div class="card-stacked">
-							<div class="card-content">
-								<p class="headline">{{{this.headline}}}</p>
-								<p class="source">{{{this.source}}} -- </p>
-								<span class="summary">{{this.summary}}</span>
-							</div>
-							<div id="urlLink" class="card-action">
-								{{!--<button type="button" href="{{this.link}}" target="_blank" class="btn btn-primary">Read</button>--}}
-					    	    <a class="" href="{{this.link}}" target="_blank">Read</a>
-					    	</div>
+			{{#if articles}} {{#each articles}}
+			<div class="col-md-12" id="cardID" data_id="{{this.id}}">
+				<div class="card horizontal">
+					<div class="card-image">
+						<img id="image" src="{{this.img}}">
+					</div>
+					<div class="card-stacked">
+						<div class="card-content">
+							<p class="headline">{{{this.headline}}}</p>
+							<p class="source">{{{this.source}}} -- </p>
+							<span class="summary">{{this.summary}}</span>
+						</div>
+						<div id="urlLink" class="card-action">
+							<a class="btn btn-primary" href="{{this.link}}" target="_blank">Read Story</a>
+							<button type="button" class="btn btn-danger" id="commentButton">Comment</button>
+							{{!--
+							<button id="linkButton" type="button" href="{{this.link}}" target="_blank" class="btn btn-primary">Read Story</button>
+							<a class="" href="{{this.link}}" target="_blank">Read</a>--}}
 						</div>
 					</div>
 				</div>
-			{{/each}}
+			</div>
+			{{/each}} {{else}}
 
-		{{else}}
+			<p class="text-center">
+				<strong> ALERT: THERE ARE NO CURRENT ARTICLES TO DISPLAY!!! </strong>
+			</p>
 
-			<p class="text-center"> There are no current articles to display. </p>
-			    
-		{{/if}}
+			{{/if}}
 
+		</div>
 	</div>
 </div>
+
+{{!--Modal--}}
+<div class="modal" id="commentModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Comments</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Name</label>
+					<input type="email" class="form-control" id="name" placeholder="Name">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlTextarea1">Comment</label>
+					<textarea class="form-control" id="comment" rows="4" placeholder="Comment...."></textarea>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="modalSubmit">Submit</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
 </div>
 
-
-
 <footer class="page-footer">
-    <div class="container">
-        <div class="row">
+	<div class="container" id="footer">
+		<div class="row">
 			<div class="col-md-4 offset-md-1">
-				<p>All Stories Are Property Of <a href='http://www.npr.org' target="_blank">NPR.ORG</a></p>
+				<p>All Stories Are Property Of
+					<a href='http://www.npr.org' target="_blank">NPR.ORG</a>
+				</p>
 			</div>
 			<div class="col-md-1 offset-md-1">
 				<p>&#169; JK</p>
@@ -69,6 +98,6 @@
 			<div class="col-md-2 offset-md-2">
 				<a class="grey-text text-lighten-4 right" href="/api-all-articles">Article API Link</a>
 			</div>
-        </div>
-    </div>
+		</div>
+	</div>
 </footer>

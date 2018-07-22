@@ -13,6 +13,7 @@ var ArticleSchema = new Schema({
     required: true
   },
 
+  //biline
   source: {
     type: String,
   },
@@ -29,9 +30,16 @@ var ArticleSchema = new Schema({
     required: true
   },
 
+  //image
   img: {
     type: String,
-  }
+  },
+
+  //join comments
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comments'
+  }]
 
 });
 
