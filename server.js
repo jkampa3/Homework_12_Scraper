@@ -17,7 +17,12 @@ var cheerio = require('cheerio');
 //var axios = require("axios"); In Demo, need?
 
 // Require all models
-var db = require("./models");
+//var db = require("./models");
+mongoose.Promise = Promise;
+var db = mongoose.connection;
+db.on("error", function(error) {
+    console.log("Mongoose Error: ", error);
+});
 
 //database port
 var port = process.env.PORT || 3000;
@@ -42,7 +47,9 @@ app.use('/', router);
 
 //mongoose connection space
 //fill in with mongoose
-mongoose.connect("mongodb://localhost/scraper");
+//mongoose.connect("mongodb://localhost/scraper");
+var mongoConfig = process.env.MONGODB_URI || "mongodb://localhost/scraper";
+mongoose.connect(mongoConfig);
 
 //validate server running
 app.listen(port, function () {
