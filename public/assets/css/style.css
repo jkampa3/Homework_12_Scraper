@@ -1,0 +1,27 @@
+.navbar {
+    font-family: 'Eczar', serif;
+}
+
+.container {
+    font-family: 'Playfair Display', serif;
+}
+
+#footer {
+    font-family: 'Eczar', serif;
+}
+
+#cardID {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#image {
+    width: 300px;
+    height: 168px;
+}
+
+
+/*
+font-family: 'Eczar', serif;
+font-family: 'Playfair Display', serif;
+*/
